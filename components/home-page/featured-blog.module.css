@@ -10,6 +10,7 @@
   text-align: center;
 }
 
+/* table and above screen */
 @media (min-width: 768px) {
   .latest h2 {
     font-size: var(--size-16);
