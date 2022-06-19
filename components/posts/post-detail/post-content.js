@@ -1,6 +1,7 @@
 import React from "react";
 import PostHeader from "./post-header";
 import classes from "./post-content.module.css";
+import ReactMarkdown from "react-markdown";
 
 const PostContent = (props) => {
   const { post } = props;
@@ -8,7 +9,7 @@ const PostContent = (props) => {
   return (
     <article className={classes.content}>
       <PostHeader title={post.title} image={imagePath} />
-      {post.content}
+      <ReactMarkdown>{post.content}</ReactMarkdown>
     </article>
   );
 };

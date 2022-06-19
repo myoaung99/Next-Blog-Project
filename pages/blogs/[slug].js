@@ -6,8 +6,7 @@ const DUMMY_POST = {
   title: "Getting start with NextJs",
   image: "getting-started-nextjs.png",
   date: "2022-06-19",
-  content:
-    "NextJS is a js framework built on top of React to help developers with creating performant web applications and superfast static websites",
+  content: "# This is mark-down",
 };
 
 const BlogDetailPage = () => {
