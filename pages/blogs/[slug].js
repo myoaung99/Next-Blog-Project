@@ -1,20 +1,34 @@
 import React from "react";
 import PostContent from "../../components/posts/post-detail/post-content";
+import { getFeaturedPosts, getSelectedPost } from "../../helper/post-util";
 
-const DUMMY_POST = {
-  slug: "getting-started-with-nextjs",
-  title: "Getting started with NextJs",
-  image: "getting-started-nextjs.png",
-  date: "2022-06-19",
-  content: "# This is mark-down",
-};
-
-const BlogDetailPage = () => {
+const BlogDetailPage = (props) => {
+  const { post } = props;
+  console.log(post);
   return (
     <>
-      <PostContent post={DUMMY_POST} />
+      <PostContent post={post} />
     </>
   );
+};
+
+export const getStaticPaths = () => {
+  const featuredPosts = getFeaturedPosts();
+  const paths = featuredPosts.map((post) => ({ params: { slug: post.slug } }));
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps = (context) => {
+  const { slug } = context.params;
+  const selectedPost = getSelectedPost(slug);
+  return {
+    props: {
+      post: selectedPost,
+    },
+  };
 };
 
 export default BlogDetailPage;
