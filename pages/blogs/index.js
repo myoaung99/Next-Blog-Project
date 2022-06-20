@@ -1,43 +1,19 @@
 import React from "react";
 import AllBlogPosts from "../../components/posts/all-post";
+import { getAllPosts } from "../../helper/post-util";
 
-const DUMMY_POSTS = [
-  {
-    slug: "getting-start-with-nextjs",
-    title: "Getting start with NextJs",
-    image: "getting-started-nextjs.png",
-    date: "2022-06-19",
-    excerpt:
-      "NextJS is a js framework built on top of React to help developers with creating performant web applications and superfast static websites",
-  },
-  {
-    slug: "getting-start-with-nextjs",
-    title: "Getting start with NextJs",
-    image: "getting-started-nextjs.png",
-    date: "2022-06-19",
-    excerpt:
-      "NextJS is a js framework built on top of React to help developers with creating performant web applications and superfast static websites",
-  },
-  {
-    slug: "getting-start-with-nextjs",
-    title: "Getting start with NextJs",
-    image: "getting-started-nextjs.png",
-    date: "2022-06-19",
-    excerpt:
-      "NextJS is a js framework built on top of React to help developers with creating performant web applications and superfast static websites",
-  },
-  {
-    slug: "getting-start-with-nextjs",
-    title: "Getting start with NextJs",
-    image: "getting-started-nextjs.png",
-    date: "2022-06-19",
-    excerpt:
-      "NextJS is a js framework built on top of React to help developers with creating performant web applications and superfast static websites",
-  },
-];
+const AllBlogsPage = (props) => {
+  const { posts } = props;
+  return <AllBlogPosts posts={posts} />;
+};
 
-const AllBlogsPage = () => {
-  return <AllBlogPosts posts={DUMMY_POSTS} />;
+export const getStaticProps = () => {
+  const allPosts = getAllPosts();
+  return {
+    props: {
+      posts: allPosts,
+    },
+  };
 };
 
 export default AllBlogsPage;
