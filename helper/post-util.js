@@ -16,7 +16,6 @@ const getPostData = (fileName) => {
     ...data,
     content,
   };
-  console.log(postData);
 
   return postData;
 };
@@ -39,9 +38,7 @@ export const getFeaturedPosts = () => {
 };
 
 export const getSelectedPost = (postSlug) => {
-  console.log(postSlug);
   const allPosts = getAllPosts();
   const selectedPost = allPosts.filter((post) => post.slug === postSlug);
-  console.log(selectedPost);
   return selectedPost[0];
 };

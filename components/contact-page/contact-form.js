@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useRef } from "react";
 import classes from "./contact-form.module.css";
 
 const ContactForm = () => {
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify({
+        email: "test@test.com",
+        userName: "test1",
+        message: "this is test",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => console.log(response));
+  };
+
   return (
     <section className={classes.contact}>
       <h1>How can I help you?</h1>
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor="email">Your Email</label>
