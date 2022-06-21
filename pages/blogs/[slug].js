@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import PostContent from "../../components/posts/post-detail/post-content";
 import { getFeaturedPosts, getSelectedPost } from "../../helper/post-util";
 
@@ -7,6 +8,10 @@ const BlogDetailPage = (props) => {
   console.log(post);
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.excerpt} />
+      </Head>
       <PostContent post={post} />
     </>
   );
