@@ -7,7 +7,8 @@ const postFilePath = path.join(process.cwd(), "posts"); // path to post
 const getPostData = (fileName) => {
   const readFile = fs.readFileSync(path.join(postFilePath, fileName), "utf-8");
 
-  const postSlug = fileName.replace(/\.[^\/.]+$/, ""); // removing .md
+  // const postSlug = fileName.replace(/\.[^\/.]+$/, ""); // removing .md
+  const postSlug = fileName.replace(".md", ""); // removing .md
 
   const { data, content } = matter(readFile);
 

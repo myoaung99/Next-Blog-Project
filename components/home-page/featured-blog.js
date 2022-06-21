@@ -5,7 +5,7 @@ import classes from "./featured-blog.module.css";
 const FeatureBlogs = ({ posts }) => {
   return (
     <div className={classes.latest}>
-      <h1>Featured blog posts</h1>
+      <h2>Featured blog posts</h2>
       <PostGrid posts={posts} />
     </div>
   );

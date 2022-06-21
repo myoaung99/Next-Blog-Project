@@ -2,7 +2,6 @@ import { MongoClient } from "mongodb";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    console.log(req.body);
     const { email, userName, message } = req.body;
 
     if (
