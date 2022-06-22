@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import PostContent from "../../components/posts/post-detail/post-content";
-import { getFeaturedPosts, getSelectedPost } from "../../helper/post-util";
+import { getAllPosts, getSelectedPost } from "../../helper/post-util";
 
 const BlogDetailPage = (props) => {
   const { post } = props;
@@ -18,8 +18,8 @@ const BlogDetailPage = (props) => {
 };
 
 export const getStaticPaths = () => {
-  const featuredPosts = getFeaturedPosts();
-  const paths = featuredPosts.map((post) => ({ params: { slug: post.slug } }));
+  const posts = getAllPosts();
+  const paths = posts.map((post) => ({ params: { slug: post.slug } }));
   return {
     paths,
     fallback: "blocking",
@@ -33,6 +33,7 @@ export const getStaticProps = (context) => {
     props: {
       post: selectedPost,
     },
+    revalidate: "600",
   };
 };
 
