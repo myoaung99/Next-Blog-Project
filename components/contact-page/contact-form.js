@@ -79,7 +79,7 @@ const ContactForm = () => {
     notification = {
       status: "pending",
       title: "Sending!",
-      message: "Your message on its way",
+      message: "Your message is on its way",
     };
   }
   if (requestStatus === "error") {
