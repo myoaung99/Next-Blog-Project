@@ -24,10 +24,10 @@ const handler = async (req, res) => {
 
     let client;
 
+    const connectString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_cluster}.mongodb.net/?retryWrites=true&w=majority`;
+
     try {
-      client = await MongoClient.connect(
-        "mongodb+srv://myomyintaung:fnztBRvFTIOAzodL@cluster0.zq497.mongodb.net/?retryWrites=true&w=majority"
-      );
+      client = await MongoClient.connect(connectString);
     } catch (error) {
       res
         .status(500)
@@ -36,7 +36,7 @@ const handler = async (req, res) => {
       return;
     }
 
-    const db = client.db("blog"); // database name
+    const db = client.db(process.env.mongodb_database); // database name
 
     try {
       await db.collection("contacts").insertOne({ ...contact }); // collection name
