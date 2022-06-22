@@ -5,7 +5,6 @@ import { getAllPosts, getSelectedPost } from "../../helper/post-util";
 
 const BlogDetailPage = (props) => {
   const { post } = props;
-  console.log(post);
   return (
     <>
       <Head>
@@ -33,7 +32,7 @@ export const getStaticProps = (context) => {
     props: {
       post: selectedPost,
     },
-    revalidate: "600",
+    revalidate: 600,
   };
 };
 
