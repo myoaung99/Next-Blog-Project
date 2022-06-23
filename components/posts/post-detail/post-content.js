@@ -4,11 +4,28 @@ import PostHeader from "./post-header";
 import classes from "./post-content.module.css";
 import ReactMarkdown from "react-markdown";
 
+import { motion } from "framer-motion";
+
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import dracula from "react-syntax-highlighter/dist/cjs/styles/prism/darcula";
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 
 SyntaxHighlighter.registerLanguage("javascript", js);
+
+const postVariants = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      delay: 0.8,
+    },
+  },
+};
 
 const PostContent = (props) => {
   const { post } = props;
@@ -45,10 +62,15 @@ const PostContent = (props) => {
   };
 
   return (
-    <article className={classes.content}>
+    <motion.article
+      variants={postVariants}
+      initial="hidden"
+      animate="visible"
+      className={classes.content}
+    >
       <PostHeader title={post.title} image={imagePath} />
       <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
-    </article>
+    </motion.article>
   );
 };
 

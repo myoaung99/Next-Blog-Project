@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import classes from "./post-item.module.css";
+import { useInView } from "react-hook-inview";
+import { motion, useAnimation } from "framer-motion";
+
+const cardVariants = {
+  hover: {
+    scale: 1.02,
+    y: -5,
+    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+    transition: {
+      type: "tween",
+      ease: "easeInOut",
+    },
+  },
+  hidden: {
+    y: 30,
+    opacity: 0.5,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+      type: "tween",
+    },
+  },
+};
 
 const PostItem = (props) => {
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    }
+  }, [control, inView]);
+
   const { title, image, date, excerpt, slug } = props.post;
 
   const formattedDate = new Date(date).toLocaleDateString("en-Us", {
@@ -16,7 +51,14 @@ const PostItem = (props) => {
   const linkPath = `/blogs/${slug}`;
 
   return (
-    <li className={classes.post}>
+    <motion.li
+      ref={ref}
+      variants={cardVariants}
+      whileHover="hover"
+      initial="hidden"
+      animate={control}
+      className={classes.post}
+    >
       <Link href={linkPath}>
         <a>
           <div className={classes.image}>
@@ -35,7 +77,7 @@ const PostItem = (props) => {
           </div>
         </a>
       </Link>
-    </li>
+    </motion.li>
   );
 };
 
