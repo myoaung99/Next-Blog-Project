@@ -2,14 +2,14 @@ import React from "react";
 import Hero from "../components/home-page/hero";
 import FeatureBlogs from "../components/home-page/featured-blog";
 import { getFeaturedPosts } from "../helper/post-util";
+import { motion } from "framer-motion";
 
 const HomePage = ({ featuredPosts }) => {
-  console.log(featuredPosts);
   return (
-    <>
+    <motion.div>
       <Hero />
       <FeatureBlogs posts={featuredPosts} />
-    </>
+    </motion.div>
   );
 };
 

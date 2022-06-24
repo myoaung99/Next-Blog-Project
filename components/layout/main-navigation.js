@@ -24,7 +24,7 @@ const MainNavigation = () => {
   return (
     <header className={classes.header}>
       <motion.div variants={head} initial="hidden" animate="visible">
-        <Link href="/">
+        <Link href="/" scroll={false}>
           <a>
             <Logo />
           </a>
@@ -33,10 +33,10 @@ const MainNavigation = () => {
 
       <motion.nav variants={head} initial="hidden" animate="visible">
         <ul>
-          <Link href="/blogs">
+          <Link href="/blogs" scroll={false}>
             <li>Blogs</li>
           </Link>
-          <Link href="/contact">
+          <Link href="/contact" scroll={false}>
             <li>Contact</li>
           </Link>
         </ul>

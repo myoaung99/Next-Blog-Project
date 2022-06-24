@@ -8,7 +8,6 @@ import { motion, useAnimation } from "framer-motion";
 const cardVariants = {
   hover: {
     scale: 1.02,
-    y: -5,
     boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
     transition: {
       type: "tween",
